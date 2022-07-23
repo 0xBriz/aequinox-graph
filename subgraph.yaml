@@ -1,8 +1,5 @@
 specVersion: 0.0.2
 description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
-graft:
-  base: QmPW1gay4WMpvd2xGu4HSFYfnGKaUVEsXKNk5DELfvFZS1
-  block: 19806580
 repository: https://github.com/0XBriz/aalto-swap.git
 schema:
   file: ./schema.graphql
@@ -13,7 +10,7 @@ dataSources:
     source:
       address: '0xc37c34eA9CA579aDF279A16C547e801ed722F3b5'
       abi: Vault
-      startBlock: 19204193
+      startBlock: 19809336
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -54,7 +51,7 @@ dataSources:
     source:
       address: '0xC07511107Fb851ca95Faf0dc0804F9F287aAd7c9'
       abi: WeightedPoolFactory
-      startBlock: 19204193
+      startBlock: 19809336
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -81,7 +78,7 @@ dataSources:
     source:
       address: '0x324A7a95F08C0107E5934d1bc22e0B7b3aEC9093'
       abi: LiquidityBootstrappingPoolFactory
-      startBlock: 19804900
+      startBlock: 19809336
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5

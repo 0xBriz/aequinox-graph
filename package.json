@@ -1,23 +1,23 @@
 {
-  "name": "balancer",
+  "name": "aqx-graph",
   "version": "0.1.0",
   "scripts": {
-    "create": "graph create 0xBriz/aalto-swap --node https://api.thegraph.com/deploy/",
-    "create:local": "graph create 0xBriz/aalto-swap --node http://127.0.0.1:8020",
+    "create": "graph create 0xBriz/aqx-graph --node https://api.thegraph.com/deploy/",
+    "create:local": "graph create 0xBriz/aqx-graph --node http://127.0.0.1:8020",
     "codegen": "yarn generate-manifests && graph codegen --output-dir src/types/",
     "build": "graph build",
     "lint": "eslint --max-warnings 0 . --ext .ts",
     "test": "jest ./test/*.test.ts",
-    "deploy": "graph deploy 0xBriz/aalto-swap --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy:local": "graph deploy 0xBriz/aalto-swap --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "deploy": "graph deploy 0xBriz/aqx-graph --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy:local": "graph deploy 0xBriz/aqx-graph --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "import-abis": "ts-node ./scripts/update-abis.ts",
     "generate-manifests": "ts-node ./scripts/generate-manifests",
     "update-addresses": "ts-node ./scripts/update-addresses-subgraph.ts",
     "update-addresses:local": "yarn update-addresses dockerParity",
     "sync": "yarn import-abis && yarn update-addresses && yarn codegen && yarn build",
     "sync:local": "yarn import-abis && yarn update-addresses dockerParity && yarn codegen && yarn build",
-    "create:server": "graph create 0xBriz/aalto-swap --node http://167.99.117.123:8020",
-    "deploy:server": "graph deploy 0xBriz/aalto-swap --ipfs http://167.99.117.123:5001 --node http://167.99.117.123:8020"
+    "create:server": "graph create 0xBriz/aqx-graph --node http://167.99.117.123:8020",
+    "deploy:server": "graph deploy 0xBriz/aqx-graph --ipfs http://167.99.117.123:5001 --node http://167.99.117.123:8020"
   },
   "devDependencies": {
     "@apollo/client": "^3.3.9",
