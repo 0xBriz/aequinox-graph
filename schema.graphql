@@ -106,8 +106,7 @@ type User @entity {
   id: ID!
   sharesOwned: [PoolShare!] @derivedFrom(field: "userAddress")
   swaps: [Swap!] @derivedFrom(field: "userAddress")
-  userInternalBalances: [UserInternalBalance!]
-    @derivedFrom(field: "userAddress")
+  userInternalBalances: [UserInternalBalance!] @derivedFrom(field: "userAddress")
 }
 
 type UserInternalBalance @entity {
@@ -196,6 +195,7 @@ type TokenPrice @entity {
   amount: BigDecimal!
   pricingAsset: Bytes! # address of stable asset
   price: BigDecimal!
+  priceUSD: BigDecimal
   block: BigInt!
   timestamp: Int!
 }

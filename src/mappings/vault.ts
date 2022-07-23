@@ -464,6 +464,7 @@ export function handleSwapEvent(event: SwapEvent): void {
 
     updateLatestPrice(tokenPrice);
   }
+
   if (isPricingAsset(tokenOutAddress) && pool.totalLiquidity.gt(MIN_POOL_LIQUIDITY)) {
     let tokenPriceId = getTokenPriceId(poolId.toHex(), tokenInAddress, tokenOutAddress, block);
     let tokenPrice = new TokenPrice(tokenPriceId);
@@ -483,6 +484,8 @@ export function handleSwapEvent(event: SwapEvent): void {
       // Otherwise we can get a simple measure of the price from the ratio of amount out vs amount in
       tokenPrice.price = tokenAmountOut.div(tokenAmountIn);
     }
+
+    tokenPrice.priceUSD = valueInUSD(tokenPrice.price, tokenInAddress);
 
     tokenPrice.save();
 
