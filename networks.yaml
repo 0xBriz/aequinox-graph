@@ -1,7 +1,7 @@
 mainnet:
   graft:
     base: QmPW1gay4WMpvd2xGu4HSFYfnGKaUVEsXKNk5DELfvFZS1
-    block: 19804900
+    block: 19806580
   network: bsc
   Vault:
     address: "0xc37c34eA9CA579aDF279A16C547e801ed722F3b5"
@@ -9,4 +9,7 @@ mainnet:
   WeightedPoolFactory:
     address: "0xC07511107Fb851ca95Faf0dc0804F9F287aAd7c9"
     startBlock: 19204193
+  LiquidityBootstrappingPoolFactory:
+    address: "0x324A7a95F08C0107E5934d1bc22e0B7b3aEC9093"
+    startBlock: 19804900
 

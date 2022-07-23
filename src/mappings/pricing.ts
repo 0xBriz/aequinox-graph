@@ -1,8 +1,15 @@
-import { Address, Bytes, BigInt, BigDecimal } from '@graphprotocol/graph-ts';
-import { Pool, TokenPrice, Balancer, PoolHistoricalLiquidity, LatestPrice } from '../types/schema';
-import { ZERO_BD, PRICING_ASSETS, USD_STABLE_ASSETS, ONE_BD, WETH, ZERO_ADDRESS } from './helpers/constants';
-import { hasVirtualSupply, PoolType } from './helpers/pools';
-import { createPoolSnapshot, getBalancerSnapshot, getToken, loadPoolToken } from './helpers/misc';
+import { Address, Bytes, BigInt, BigDecimal } from "@graphprotocol/graph-ts";
+import { Pool, TokenPrice, Balancer, PoolHistoricalLiquidity, LatestPrice } from "../types/schema";
+import {
+  ZERO_BD,
+  PRICING_ASSETS,
+  USD_STABLE_ASSETS,
+  ONE_BD,
+  WETH,
+  ZERO_ADDRESS,
+} from "./helpers/constants";
+import { hasVirtualSupply, PoolType } from "./helpers/pools";
+import { createPoolSnapshot, getBalancerSnapshot, getToken, loadPoolToken } from "./helpers/misc";
 
 export function isPricingAsset(asset: Address): boolean {
   for (let i: i32 = 0; i < PRICING_ASSETS.length; i++) {
@@ -19,7 +26,12 @@ export function getPreferentialPricingAsset(assets: Address[]): Address {
   return ZERO_ADDRESS;
 }
 
-export function updatePoolLiquidity(poolId: string, block: BigInt, pricingAsset: Address, timestamp: i32): boolean {
+export function updatePoolLiquidity(
+  poolId: string,
+  block: BigInt,
+  pricingAsset: Address,
+  timestamp: i32
+): boolean {
   let pool = Pool.load(poolId);
   if (pool == null) return false;
 
@@ -102,7 +114,7 @@ export function updatePoolLiquidity(poolId: string, block: BigInt, pricingAsset:
   createPoolSnapshot(pool, timestamp);
 
   // Update global stats
-  let vault = Balancer.load('2') as Balancer;
+  let vault = Balancer.load("2") as Balancer;
   vault.totalLiquidity = vault.totalLiquidity.plus(liquidityChange);
   vault.save();
 
@@ -133,7 +145,9 @@ export function valueInUSD(value: BigDecimal, pricingAsset: Address): BigDecimal
   } else {
     // convert to USD
     for (let i: i32 = 0; i < USD_STABLE_ASSETS.length; i++) {
-      let pricingAssetInUSD = LatestPrice.load(getLatestPriceId(pricingAsset, USD_STABLE_ASSETS[i]));
+      let pricingAssetInUSD = LatestPrice.load(
+        getLatestPriceId(pricingAsset, USD_STABLE_ASSETS[i])
+      );
       if (pricingAssetInUSD != null) {
         usdValue = value.times(pricingAssetInUSD.price);
         break;
@@ -171,7 +185,9 @@ export function swapValueInUSD(
     let tokenInSwapValueUSD = valueInUSD(tokenAmountIn, tokenInAddress);
     let tokenOutSwapValueUSD = valueInUSD(tokenAmountOut, tokenOutAddress);
     let divisor =
-      tokenInSwapValueUSD.gt(ZERO_BD) && tokenOutSwapValueUSD.gt(ZERO_BD) ? BigDecimal.fromString('2') : ONE_BD;
+      tokenInSwapValueUSD.gt(ZERO_BD) && tokenOutSwapValueUSD.gt(ZERO_BD)
+        ? BigDecimal.fromString("2")
+        : ONE_BD;
     swapValueUSD = tokenInSwapValueUSD.plus(tokenOutSwapValueUSD).div(divisor);
   }
 
@@ -179,7 +195,7 @@ export function swapValueInUSD(
 }
 
 export function getLatestPriceId(tokenAddress: Address, pricingAsset: Address): string {
-  return tokenAddress.toHexString().concat('-').concat(pricingAsset.toHexString());
+  return tokenAddress.toHexString().concat("-").concat(pricingAsset.toHexString());
 }
 
 export function updateLatestPrice(tokenPrice: TokenPrice): void {
@@ -205,8 +221,12 @@ export function updateLatestPrice(tokenPrice: TokenPrice): void {
   token.save();
 }
 
-function getPoolHistoricalLiquidityId(poolId: string, tokenAddress: Address, block: BigInt): string {
-  return poolId.concat('-').concat(tokenAddress.toHexString()).concat('-').concat(block.toString());
+function getPoolHistoricalLiquidityId(
+  poolId: string,
+  tokenAddress: Address,
+  block: BigInt
+): string {
+  return poolId.concat("-").concat(tokenAddress.toHexString()).concat("-").concat(block.toString());
 }
 
 export function isUSDStable(asset: Address): boolean {

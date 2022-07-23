@@ -1,29 +1,35 @@
-import { ZERO_BD, VAULT_ADDRESS, ZERO } from './helpers/constants';
-import { PoolType } from './helpers/pools';
+import { ZERO_BD, VAULT_ADDRESS, ZERO } from "./helpers/constants";
+import { PoolType } from "./helpers/pools";
 
-import { newPoolEntity, createPoolTokenEntity, scaleDown, getBalancerSnapshot, tokenToDecimal } from './helpers/misc';
-import { updatePoolWeights } from './helpers/weighted';
+import {
+  newPoolEntity,
+  createPoolTokenEntity,
+  scaleDown,
+  getBalancerSnapshot,
+  tokenToDecimal,
+} from "./helpers/misc";
+import { updatePoolWeights } from "./helpers/weighted";
 
-import { BigInt, Address, Bytes, BigDecimal } from '@graphprotocol/graph-ts';
-import { PoolCreated } from '../types/WeightedPoolFactory/WeightedPoolFactory';
-import { Balancer, Pool } from '../types/schema';
+import { BigInt, Address, Bytes, BigDecimal } from "@graphprotocol/graph-ts";
+import { PoolCreated } from "../types/WeightedPoolFactory/WeightedPoolFactory";
+import { Balancer, Pool } from "../types/schema";
 
 // datasource
-import { WeightedPool as WeightedPoolTemplate } from '../types/templates';
-import { StablePool as StablePoolTemplate } from '../types/templates';
-import { MetaStablePool as MetaStablePoolTemplate } from '../types/templates';
+import { WeightedPool as WeightedPoolTemplate } from "../types/templates";
+import { StablePool as StablePoolTemplate } from "../types/templates";
+import { MetaStablePool as MetaStablePoolTemplate } from "../types/templates";
 //import { StablePhantomPool as StablePhantomPoolTemplate } from '../types/templates';
-import { ConvergentCurvePool as CCPoolTemplate } from '../types/templates';
-import { LiquidityBootstrappingPool as LiquidityBootstrappingPoolTemplate } from '../types/templates';
-import { InvestmentPool as InvestmentPoolTemplate } from '../types/templates';
+import { ConvergentCurvePool as CCPoolTemplate } from "../types/templates";
+import { LiquidityBootstrappingPool as LiquidityBootstrappingPoolTemplate } from "../types/templates";
+import { InvestmentPool as InvestmentPoolTemplate } from "../types/templates";
 //import { LinearPool as LinearPoolTemplate } from '../types/templates';
 
-import { Vault } from '../types/Vault/Vault';
-import { WeightedPool } from '../types/templates/WeightedPool/WeightedPool';
-import { StablePool } from '../types/templates/StablePool/StablePool';
-import { ConvergentCurvePool } from '../types/templates/ConvergentCurvePool/ConvergentCurvePool';
-import { LinearPool } from '../types/templates/LinearPool/LinearPool';
-import { ERC20 } from '../types/Vault/ERC20';
+import { Vault } from "../types/Vault/Vault";
+import { WeightedPool } from "../types/templates/WeightedPool/WeightedPool";
+import { StablePool } from "../types/templates/StablePool/StablePool";
+import { ConvergentCurvePool } from "../types/templates/ConvergentCurvePool/ConvergentCurvePool";
+import { LinearPool } from "../types/templates/LinearPool/LinearPool";
+import { ERC20 } from "../types/Vault/ERC20";
 
 function createWeightedLikePool(event: PoolCreated, poolType: string): string {
   let poolAddress: Address = event.params.pool;
@@ -230,11 +236,11 @@ export function handleNewCCPPool(event: PoolCreated): void {
 // }
 
 function findOrInitializeVault(): Balancer {
-  let vault: Balancer | null = Balancer.load('2');
+  let vault: Balancer | null = Balancer.load("2");
   if (vault != null) return vault;
 
   // if no vault yet, set up blank initial
-  vault = new Balancer('2');
+  vault = new Balancer("2");
   vault.poolCount = 0;
   vault.totalLiquidity = ZERO_BD;
   vault.totalSwapVolume = ZERO_BD;

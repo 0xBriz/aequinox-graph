@@ -1,20 +1,23 @@
-import { BigInt, log } from '@graphprotocol/graph-ts';
-import { Transfer } from '../types/templates/WeightedPool/BalancerPoolToken';
-import { WeightedPool, SwapFeePercentageChanged } from '../types/templates/WeightedPool/WeightedPool';
+import { BigInt, log } from "@graphprotocol/graph-ts";
+import { Transfer } from "../types/templates/WeightedPool/BalancerPoolToken";
+import {
+  WeightedPool,
+  SwapFeePercentageChanged,
+} from "../types/templates/WeightedPool/WeightedPool";
 import {
   GradualWeightUpdateScheduled,
   SwapEnabledSet,
-} from '../types/templates/LiquidityBootstrappingPool/LiquidityBootstrappingPool';
-import { ManagementFeePercentageChanged } from '../types/templates/InvestmentPool/InvestmentPool';
-import { TargetsSet } from '../types/templates/LinearPool/LinearPool';
+} from "../types/templates/LiquidityBootstrappingPool/LiquidityBootstrappingPool";
+import { ManagementFeePercentageChanged } from "../types/templates/InvestmentPool/InvestmentPool";
+import { TargetsSet } from "../types/templates/LinearPool/LinearPool";
 import {
   AmpUpdateStarted,
   AmpUpdateStopped,
   MetaStablePool,
   PriceRateCacheUpdated,
   PriceRateProviderSet,
-} from '../types/templates/MetaStablePool/MetaStablePool';
-import { Pool, PriceRateProvider, GradualWeightUpdate, AmpUpdate } from '../types/schema';
+} from "../types/templates/MetaStablePool/MetaStablePool";
+import { Pool, PriceRateProvider, GradualWeightUpdate, AmpUpdate } from "../types/schema";
 
 import {
   tokenToDecimal,
@@ -23,9 +26,9 @@ import {
   getPoolTokenId,
   loadPriceRateProvider,
   getPoolShare,
-} from './helpers/misc';
-import { ONE_BD, ZERO_ADDRESS, ZERO_BD } from './helpers/constants';
-import { updateAmpFactor } from './helpers/stable';
+} from "./helpers/misc";
+import { ONE_BD, ZERO_ADDRESS, ZERO_BD } from "./helpers/constants";
+import { updateAmpFactor } from "./helpers/stable";
 
 /************************************
  *********** SWAP ENABLED ***********
@@ -213,7 +216,7 @@ export function handlePriceRateCacheUpdated(event: PriceRateCacheUpdated): void 
 
   let provider = loadPriceRateProvider(poolId.toHexString(), event.params.token);
   if (provider == null) {
-    log.warning('Provider not found in handlePriceRateCacheUpdated: {} {}', [
+    log.warning("Provider not found in handlePriceRateCacheUpdated: {} {}", [
       poolId.toHexString(),
       event.params.token.toHexString(),
     ]);
@@ -260,26 +263,42 @@ export function handleTransfer(event: Transfer): void {
   let BPT_DECIMALS = 18;
 
   if (isMint) {
-    poolShareTo.balance = poolShareTo.balance.plus(tokenToDecimal(event.params.value, BPT_DECIMALS));
+    poolShareTo.balance = poolShareTo.balance.plus(
+      tokenToDecimal(event.params.value, BPT_DECIMALS)
+    );
     poolShareTo.save();
     pool.totalShares = pool.totalShares.plus(tokenToDecimal(event.params.value, BPT_DECIMALS));
   } else if (isBurn) {
-    poolShareFrom.balance = poolShareFrom.balance.minus(tokenToDecimal(event.params.value, BPT_DECIMALS));
+    poolShareFrom.balance = poolShareFrom.balance.minus(
+      tokenToDecimal(event.params.value, BPT_DECIMALS)
+    );
     poolShareFrom.save();
     pool.totalShares = pool.totalShares.minus(tokenToDecimal(event.params.value, BPT_DECIMALS));
   } else {
-    poolShareTo.balance = poolShareTo.balance.plus(tokenToDecimal(event.params.value, BPT_DECIMALS));
+    poolShareTo.balance = poolShareTo.balance.plus(
+      tokenToDecimal(event.params.value, BPT_DECIMALS)
+    );
     poolShareTo.save();
 
-    poolShareFrom.balance = poolShareFrom.balance.minus(tokenToDecimal(event.params.value, BPT_DECIMALS));
+    poolShareFrom.balance = poolShareFrom.balance.minus(
+      tokenToDecimal(event.params.value, BPT_DECIMALS)
+    );
     poolShareFrom.save();
   }
 
-  if (poolShareTo !== null && poolShareTo.balance.notEqual(ZERO_BD) && poolShareToBalance.equals(ZERO_BD)) {
+  if (
+    poolShareTo !== null &&
+    poolShareTo.balance.notEqual(ZERO_BD) &&
+    poolShareToBalance.equals(ZERO_BD)
+  ) {
     pool.holdersCount = pool.holdersCount.plus(BigInt.fromI32(1));
   }
 
-  if (poolShareFrom !== null && poolShareFrom.balance.equals(ZERO_BD) && poolShareFromBalance.notEqual(ZERO_BD)) {
+  if (
+    poolShareFrom !== null &&
+    poolShareFrom.balance.equals(ZERO_BD) &&
+    poolShareFromBalance.notEqual(ZERO_BD)
+  ) {
     pool.holdersCount = pool.holdersCount.minus(BigInt.fromI32(1));
   }
 
