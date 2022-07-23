@@ -8,8 +8,8 @@ import {
   WETH,
   ZERO_ADDRESS,
 } from "./helpers/constants";
-import { hasVirtualSupply, PoolType } from "./helpers/pools";
-import { createPoolSnapshot, getBalancerSnapshot, getToken, loadPoolToken } from "./helpers/misc";
+import { hasVirtualSupply } from "./helpers/pools";
+import { getBalancerSnapshot, getToken, getTokenPriceId, loadPoolToken } from "./helpers/misc";
 
 export function isPricingAsset(asset: Address): boolean {
   for (let i: i32 = 0; i < PRICING_ASSETS.length; i++) {
@@ -53,25 +53,38 @@ export function updatePoolLiquidity(
     }
     let poolTokenQuantity: BigDecimal = poolToken.balance;
 
+    // compare any new token price with the last price
+    let tokenPriceId = getTokenPriceId(poolId, tokenAddress, pricingAsset, block);
+    let tokenPrice = TokenPrice.load(tokenPriceId);
     let price: BigDecimal = ZERO_BD;
     let latestPriceId = getLatestPriceId(tokenAddress, pricingAsset);
     let latestPrice = LatestPrice.load(latestPriceId);
 
+    if (tokenPrice == null && latestPrice != null) {
+      price = latestPrice.price;
+    }
+
     // note that we can only meaningfully report liquidity once assets are traded with
     // the pricing asset
-    if (latestPrice) {
-      // value in terms of priceableAsset
-      price = latestPrice.price;
-    } else if (pool.poolType == PoolType.StablePhantom) {
-      // try to estimate token price in terms of pricing asset
-      let pricingAssetInUSD = valueInUSD(ONE_BD, pricingAsset);
-      let currentTokenInUSD = valueInUSD(ONE_BD, tokenAddress);
+    if (tokenPrice) {
+      //value in terms of priceableAsset
+      price = tokenPrice.price;
 
-      if (pricingAssetInUSD.equals(ZERO_BD) || currentTokenInUSD.equals(ZERO_BD)) {
-        continue;
+      // Possibly update latest price
+      if (latestPrice == null) {
+        latestPrice = new LatestPrice(latestPriceId);
+        latestPrice.asset = tokenAddress;
+        latestPrice.pricingAsset = pricingAsset;
       }
+      latestPrice.price = price;
+      latestPrice.priceUSD = tokenPrice.priceUSD;
+      latestPrice.block = block;
+      latestPrice.poolId = poolId;
+      latestPrice.save();
 
-      price = currentTokenInUSD.div(pricingAssetInUSD);
+      let token = getToken(tokenAddress);
+      token.latestPrice = latestPrice.id;
+      token.save();
     }
 
     // Exclude virtual supply from pool value
@@ -101,17 +114,16 @@ export function updatePoolLiquidity(
   phl.poolId = poolId;
   phl.pricingAsset = pricingAsset;
   phl.block = block;
+  phl.timestamp = timestamp;
   phl.poolTotalShares = pool.totalShares;
   phl.poolLiquidity = poolValue;
+  phl.poolLiquidityUSD = newPoolLiquidity;
   phl.poolShareValue = pool.totalShares.gt(ZERO_BD) ? poolValue.div(pool.totalShares) : ZERO_BD;
   phl.save();
 
   // Update pool stats
   pool.totalLiquidity = newPoolLiquidity;
   pool.save();
-
-  // Create or update pool daily snapshot
-  createPoolSnapshot(pool, timestamp);
 
   // Update global stats
   let vault = Balancer.load("2") as Balancer;

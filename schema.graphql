@@ -145,11 +145,11 @@ type Swap @entity {
   tokenOutSym: String!
   tokenAmountIn: BigDecimal!
   tokenAmountOut: BigDecimal!
-  valueUSD: BigDecimal
   poolId: Pool!
   userAddress: User!
   timestamp: Int!
   tx: Bytes!
+  valueUSD: BigDecimal!
 }
 
 enum InvestType {
@@ -165,6 +165,7 @@ type JoinExit @entity {
   pool: Pool!
   user: User!
   timestamp: Int!
+  valueUSD: BigDecimal!
   tx: Bytes!
 }
 
@@ -174,7 +175,7 @@ type LatestPrice @entity {
   pricingAsset: Bytes! # address of stable asset
   poolId: Pool! # last pool which set price
   price: BigDecimal! # all the latest prices
-  priceUSD: BigDecimal # all the latest prices
+  priceUSD: BigDecimal! # all the latest prices
   block: BigInt! # last block that prices were updated
 }
 
@@ -183,9 +184,11 @@ type PoolHistoricalLiquidity @entity {
   poolId: Pool!
   poolTotalShares: BigDecimal!
   poolLiquidity: BigDecimal! # total value, priced in the stable asset - ie USD
+  poolLiquidityUSD: BigDecimal!
   poolShareValue: BigDecimal!
   pricingAsset: Bytes! # address of stable asset
   block: BigInt!
+  timestamp: Int!
 }
 
 type TokenPrice @entity {
@@ -195,7 +198,7 @@ type TokenPrice @entity {
   amount: BigDecimal!
   pricingAsset: Bytes! # address of stable asset
   price: BigDecimal!
-  priceUSD: BigDecimal
+  priceUSD: BigDecimal!
   block: BigInt!
   timestamp: Int!
 }
@@ -217,6 +220,13 @@ type PoolSnapshot @entity {
   swapFees: BigDecimal!
   liquidity: BigDecimal!
   timestamp: Int!
+
+  # Beets additions
+  totalSwapVolume: BigDecimal!
+  totalSwapFee: BigDecimal!
+  totalLiquidity: BigDecimal!
+  swapsCount: BigInt!
+  holdersCount: BigInt!
 }
 
 type Token @entity {

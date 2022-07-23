@@ -6,11 +6,10 @@ import {
   createPoolTokenEntity,
   scaleDown,
   getBalancerSnapshot,
-  tokenToDecimal,
 } from "./helpers/misc";
 import { updatePoolWeights } from "./helpers/weighted";
 
-import { BigInt, Address, Bytes, BigDecimal } from "@graphprotocol/graph-ts";
+import { BigInt, Address, Bytes } from "@graphprotocol/graph-ts";
 import { PoolCreated } from "../types/WeightedPoolFactory/WeightedPoolFactory";
 import { Balancer, Pool } from "../types/schema";
 
