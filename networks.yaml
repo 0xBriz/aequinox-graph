@@ -1,4 +1,7 @@
 mainnet:
+  graft:
+    base: QmPW1gay4WMpvd2xGu4HSFYfnGKaUVEsXKNk5DELfvFZS1
+    block: 19804900
   network: bsc
   Vault:
     address: "0xc37c34eA9CA579aDF279A16C547e801ed722F3b5"

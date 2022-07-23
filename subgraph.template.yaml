@@ -1,11 +1,11 @@
 specVersion: 0.0.2
-description: Balancer is a non-custodial portfolio manager, liquidity provider, and price sensor.
+description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
 {{#if graft}}
 graft:
   base: {{graft.base}}
   block: {{graft.block}}
 {{/if}}
-repository: https://github.com/balancer-labs/balancer-subgraph-v2
+repository: https://github.com/0XBriz/aalto-swap.git
 schema:
   file: ./schema.graphql
 dataSources:
@@ -77,6 +77,7 @@ dataSources:
       eventHandlers:
         - event: PoolCreated(indexed address)
           handler: handleNewWeightedPool
+  {{#if WeightedPool2TokenFactory}}
   - kind: ethereum/contract
     name: WeightedPool2TokenFactory
     network: {{network}}
@@ -104,6 +105,7 @@ dataSources:
       eventHandlers:
         - event: PoolCreated(indexed address)
           handler: handleNewWeightedPool
+  {{/if}}
   {{#if StablePoolFactory}}
   - kind: ethereum/contract
     name: StablePoolFactory
@@ -486,8 +488,6 @@ templates:
       abis:
         - name: WeightedPool # Necessary for Transfer handler
           file: ./abis/WeightedPool.json
-        - name: StablePool
-          file: ./abis/StablePool.json
         - name: MetaStablePool
           file: ./abis/MetaStablePool.json
         - name: BalancerPoolToken
@@ -497,10 +497,6 @@ templates:
           handler: handleTransfer
         - event: SwapFeePercentageChanged(uint256)
           handler: handleSwapFeePercentageChange
-        - event: AmpUpdateStarted(uint256,uint256,uint256,uint256)
-          handler: handleAmpUpdateStarted
-        - event: AmpUpdateStopped(uint256)
-          handler: handleAmpUpdateStopped
         - event: PriceRateProviderSet(indexed address,indexed address,uint256)
           handler: handlePriceRateProviderSet
         - event: PriceRateCacheUpdated(indexed address,uint256)
@@ -592,73 +588,3 @@ templates:
           handler: handleGradualWeightUpdateScheduled
         - event: ManagementFeePercentageChanged(uint256)
           handler: handleManagementFeePercentageChanged
-        - event: PausedStateChanged(bool)
-          handler: handlePausedStateChanged
-  - kind: ethereum/contract
-    name: StablePhantomPool
-    network: {{network}}
-    source:
-      abi: StablePhantomPool
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      file: ./src/mappings/poolController.ts
-      entities:
-        - Pool
-        - PoolShare
-        - Swap
-        - PoolToken
-        - GradualWeightUpdate
-      abis:
-        - name: WeightedPool
-          file: ./abis/WeightedPool.json
-        - name: StablePool
-          file: ./abis/StablePool.json
-        - name: MetaStablePool
-          file: ./abis/MetaStablePool.json
-        - name: StablePhantomPool
-          file: ./abis/StablePhantomPool.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: SwapFeePercentageChanged(uint256)
-          handler: handleSwapFeePercentageChange
-        - event: AmpUpdateStarted(uint256,uint256,uint256,uint256)
-          handler: handleAmpUpdateStarted
-        - event: AmpUpdateStopped(uint256)
-          handler: handleAmpUpdateStopped
-        - event: TokenRateProviderSet(indexed address,indexed address,uint256)
-          handler: handlePriceRateProviderSet
-        - event: TokenRateCacheUpdated(indexed address,uint256)
-          handler: handlePriceRateCacheUpdated
-  - kind: ethereum/contract
-    name: LinearPool
-    network: {{network}}
-    source:
-      abi: LinearPool
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      file: ./src/mappings/poolController.ts
-      entities:
-        - Pool
-        - PoolShare
-        - Swap
-        - PoolToken
-        - GradualWeightUpdate
-      abis:
-        - name: WeightedPool
-          file: ./abis/WeightedPool.json
-        - name: MetaStablePool
-          file: ./abis/MetaStablePool.json
-        - name: LinearPool
-          file: ./abis/LinearPool.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: SwapFeePercentageChanged(uint256)
-          handler: handleSwapFeePercentageChange
-        - event: TargetsSet(indexed address,uint256,uint256)
-          handler: handleTargetsSet

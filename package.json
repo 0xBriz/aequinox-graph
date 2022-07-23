@@ -9,13 +9,15 @@
     "lint": "eslint --max-warnings 0 . --ext .ts",
     "test": "jest ./test/*.test.ts",
     "deploy": "graph deploy 0xBriz/aalto-swap --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy:local": "graph deploy 0xBriz/aalto-swap subgraph.dockerParity.yaml --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "deploy:local": "graph deploy 0xBriz/aalto-swap --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "import-abis": "ts-node ./scripts/update-abis.ts",
     "generate-manifests": "ts-node ./scripts/generate-manifests",
     "update-addresses": "ts-node ./scripts/update-addresses-subgraph.ts",
     "update-addresses:local": "yarn update-addresses dockerParity",
     "sync": "yarn import-abis && yarn update-addresses && yarn codegen && yarn build",
-    "sync:local": "yarn import-abis && yarn update-addresses dockerParity && yarn codegen && yarn build"
+    "sync:local": "yarn import-abis && yarn update-addresses dockerParity && yarn codegen && yarn build",
+    "create:server": "graph create 0xBriz/aalto-swap --node http://167.99.117.123:8020",
+    "deploy:server": "graph deploy 0xBriz/aalto-swap --ipfs http://167.99.117.123:5001 --node http://167.99.117.123:8020"
   },
   "devDependencies": {
     "@apollo/client": "^3.3.9",
