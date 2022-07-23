@@ -12,11 +12,11 @@ import { Balancer, Pool } from '../types/schema';
 import { WeightedPool as WeightedPoolTemplate } from '../types/templates';
 import { StablePool as StablePoolTemplate } from '../types/templates';
 import { MetaStablePool as MetaStablePoolTemplate } from '../types/templates';
-import { StablePhantomPool as StablePhantomPoolTemplate } from '../types/templates';
+//import { StablePhantomPool as StablePhantomPoolTemplate } from '../types/templates';
 import { ConvergentCurvePool as CCPoolTemplate } from '../types/templates';
 import { LiquidityBootstrappingPool as LiquidityBootstrappingPoolTemplate } from '../types/templates';
 import { InvestmentPool as InvestmentPoolTemplate } from '../types/templates';
-import { LinearPool as LinearPoolTemplate } from '../types/templates';
+//import { LinearPool as LinearPoolTemplate } from '../types/templates';
 
 import { Vault } from '../types/Vault/Vault';
 import { WeightedPool } from '../types/templates/WeightedPool/WeightedPool';
@@ -122,10 +122,10 @@ export function handleNewMetaStablePool(event: PoolCreated): void {
   MetaStablePoolTemplate.create(event.params.pool);
 }
 
-export function handleNewStablePhantomPool(event: PoolCreated): void {
-  createStableLikePool(event, PoolType.StablePhantom);
-  StablePhantomPoolTemplate.create(event.params.pool);
-}
+// export function handleNewStablePhantomPool(event: PoolCreated): void {
+//   createStableLikePool(event, PoolType.StablePhantom);
+//   StablePhantomPoolTemplate.create(event.params.pool);
+// }
 
 export function handleNewCCPPool(event: PoolCreated): void {
   let poolAddress: Address = event.params.pool;
@@ -178,56 +178,56 @@ export function handleNewCCPPool(event: PoolCreated): void {
   CCPoolTemplate.create(poolAddress);
 }
 
-export function handleNewAaveLinearPool(event: PoolCreated): void {
-  handleNewLinearPool(event, PoolType.AaveLinear);
-}
+// export function handleNewAaveLinearPool(event: PoolCreated): void {
+//   handleNewLinearPool(event, PoolType.AaveLinear);
+// }
 
-export function handleNewERC4626LinearPool(event: PoolCreated): void {
-  handleNewLinearPool(event, PoolType.ERC4626Linear);
-}
+// export function handleNewERC4626LinearPool(event: PoolCreated): void {
+//   handleNewLinearPool(event, PoolType.ERC4626Linear);
+// }
 
-function handleNewLinearPool(event: PoolCreated, poolType: string): void {
-  let poolAddress: Address = event.params.pool;
+// function handleNewLinearPool(event: PoolCreated, poolType: string): void {
+//   let poolAddress: Address = event.params.pool;
 
-  let poolContract = LinearPool.bind(poolAddress);
+//   let poolContract = LinearPool.bind(poolAddress);
 
-  let poolIdCall = poolContract.try_getPoolId();
-  let poolId = poolIdCall.value;
+//   let poolIdCall = poolContract.try_getPoolId();
+//   let poolId = poolIdCall.value;
 
-  let swapFeeCall = poolContract.try_getSwapFeePercentage();
-  let swapFee = swapFeeCall.value;
+//   let swapFeeCall = poolContract.try_getSwapFeePercentage();
+//   let swapFee = swapFeeCall.value;
 
-  let pool = handleNewPool(event, poolId, swapFee);
+//   let pool = handleNewPool(event, poolId, swapFee);
 
-  pool.poolType = poolType;
-  pool.factory = event.address;
+//   pool.poolType = poolType;
+//   pool.factory = event.address;
 
-  let mainIndexCall = poolContract.try_getMainIndex();
-  pool.mainIndex = mainIndexCall.value.toI32();
-  let wrappedIndexCall = poolContract.try_getWrappedIndex();
-  pool.wrappedIndex = wrappedIndexCall.value.toI32();
+//   let mainIndexCall = poolContract.try_getMainIndex();
+//   pool.mainIndex = mainIndexCall.value.toI32();
+//   let wrappedIndexCall = poolContract.try_getWrappedIndex();
+//   pool.wrappedIndex = wrappedIndexCall.value.toI32();
 
-  let targetsCall = poolContract.try_getTargets();
-  pool.lowerTarget = tokenToDecimal(targetsCall.value.value0, 18);
-  pool.upperTarget = tokenToDecimal(targetsCall.value.value1, 18);
+//   let targetsCall = poolContract.try_getTargets();
+//   pool.lowerTarget = tokenToDecimal(targetsCall.value.value0, 18);
+//   pool.upperTarget = tokenToDecimal(targetsCall.value.value1, 18);
 
-  let vaultContract = Vault.bind(VAULT_ADDRESS);
-  let tokensCall = vaultContract.try_getPoolTokens(poolId);
+//   let vaultContract = Vault.bind(VAULT_ADDRESS);
+//   let tokensCall = vaultContract.try_getPoolTokens(poolId);
 
-  if (!tokensCall.reverted) {
-    let tokens = tokensCall.value.value0;
-    pool.tokensList = changetype<Bytes[]>(tokens);
+//   if (!tokensCall.reverted) {
+//     let tokens = tokensCall.value.value0;
+//     pool.tokensList = changetype<Bytes[]>(tokens);
 
-    for (let i: i32 = 0; i < tokens.length; i++) {
-      createPoolTokenEntity(poolId.toHexString(), tokens[i]);
-    }
-  }
-  let maxTokenBalance = BigDecimal.fromString('5192296858534827.628530496329220095');
-  pool.totalShares = pool.totalShares.minus(maxTokenBalance);
-  pool.save();
+//     for (let i: i32 = 0; i < tokens.length; i++) {
+//       createPoolTokenEntity(poolId.toHexString(), tokens[i]);
+//     }
+//   }
+//   let maxTokenBalance = BigDecimal.fromString('5192296858534827.628530496329220095');
+//   pool.totalShares = pool.totalShares.minus(maxTokenBalance);
+//   pool.save();
 
-  LinearPoolTemplate.create(poolAddress);
-}
+//   LinearPoolTemplate.create(poolAddress);
+// }
 
 function findOrInitializeVault(): Balancer {
   let vault: Balancer | null = Balancer.load('2');
