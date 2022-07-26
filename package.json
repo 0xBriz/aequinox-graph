@@ -17,7 +17,8 @@
     "sync": "yarn import-abis && yarn update-addresses && yarn codegen && yarn build",
     "sync:local": "yarn import-abis && yarn update-addresses dockerParity && yarn codegen && yarn build",
     "create:server": "graph create 0xBriz/aqx-graph --node http://167.99.117.123:8020",
-    "deploy:server": "graph deploy 0xBriz/aqx-graph --ipfs http://167.99.117.123:5001 --node http://167.99.117.123:8020"
+    "deploy:server": "graph deploy 0xBriz/aqx-graph --ipfs http://167.99.117.123:5001 --node http://167.99.117.123:8020",
+    "deploy:goerli": "graph deploy 0xBriz/dex-goerli subgraph.goerli.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
   },
   "devDependencies": {
     "@apollo/client": "^3.3.9",
