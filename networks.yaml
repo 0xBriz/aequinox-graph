@@ -2,13 +2,22 @@ mainnet:
   network: bsc
   Vault:
     address: "0xc37c34eA9CA579aDF279A16C547e801ed722F3b5"
-    startBlock: 19809336
+    startBlock: 19949287
   WeightedPoolFactory:
     address: "0xC07511107Fb851ca95Faf0dc0804F9F287aAd7c9"
-    startBlock: 19809336
+    startBlock: 19949287
   LiquidityBootstrappingPoolFactory:
     address: "0x324A7a95F08C0107E5934d1bc22e0B7b3aEC9093"
-    startBlock: 19809336
+    startBlock: 19949287
+  WeightedPool2TokenFactory:
+    address: "0x9CaC3b6c3AaF765479CfaB9D0EeE87a6161661D9"
+    startBlock: 19949287
+  StablePoolFactory:
+    address: "0xF6eF1C72508FEEC5E4AB53d6C1a84E509ba3E043"
+    startBlock: 19949287
+  WeightedPoolNoAMFactory:
+    address: "0x39045c1BBB3ba627AE14063f81db59020C6b3467"
+    startBlock: 19949287
 goerli:
   network: goerli
   Vault:
