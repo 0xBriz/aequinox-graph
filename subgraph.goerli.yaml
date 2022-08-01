@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x0Cc23b51B3A89728c85a63c819E8283e353FC86c'
       abi: Vault
-      startBlock: 7295572
+      startBlock: 7328856
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -51,7 +51,7 @@ dataSources:
     source:
       address: '0x4460ca0a27eC7aF5377248B9869FC1d91F557a48'
       abi: WeightedPoolFactory
-      startBlock: 7295572
+      startBlock: 7328856
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -78,7 +78,7 @@ dataSources:
     source:
       address: '0x66Fe83B187abB7D38FB93E37Cd2677F8f6245c23'
       abi: WeightedPoolFactory
-      startBlock: 7295572
+      startBlock: 7328856
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -105,7 +105,7 @@ dataSources:
     source:
       address: '0xce6E91e48Db1C42f4A379a79851f210786A9A17a'
       abi: WeightedPoolNoAMFactory
-      startBlock: 7295572
+      startBlock: 7328856
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -132,7 +132,7 @@ dataSources:
     source:
       address: '0x857EBFd3fAb7392b729a072915e6A30CA1843B93'
       abi: StablePoolFactory
-      startBlock: 7295572
+      startBlock: 7328856
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -159,7 +159,7 @@ dataSources:
     source:
       address: '0x709708d913664a85f7462882dB2B6F7f69E1BbC9'
       abi: LiquidityBootstrappingPoolFactory
-      startBlock: 7295572
+      startBlock: 7328856
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
