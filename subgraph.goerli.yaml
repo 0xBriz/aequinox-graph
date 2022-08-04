@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
-repository: https://github.com/0XBriz/aalto-swap.git
+repository: https://github.com/0XBriz/goerli-aqx-graph.git
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: Vault
     network: goerli
     source:
-      address: '0x0Cc23b51B3A89728c85a63c819E8283e353FC86c'
+      address: "0x0Cc23b51B3A89728c85a63c819E8283e353FC86c"
       abi: Vault
-      startBlock: 7328856
+      startBlock: 7342000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -49,9 +49,9 @@ dataSources:
     name: WeightedPoolFactory
     network: goerli
     source:
-      address: '0x4460ca0a27eC7aF5377248B9869FC1d91F557a48'
+      address: "0x4460ca0a27eC7aF5377248B9869FC1d91F557a48"
       abi: WeightedPoolFactory
-      startBlock: 7328856
+      startBlock: 7342000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -76,9 +76,9 @@ dataSources:
     name: WeightedPool2TokenFactory
     network: goerli
     source:
-      address: '0x66Fe83B187abB7D38FB93E37Cd2677F8f6245c23'
+      address: "0x66Fe83B187abB7D38FB93E37Cd2677F8f6245c23"
       abi: WeightedPoolFactory
-      startBlock: 7328856
+      startBlock: 7342000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -103,9 +103,9 @@ dataSources:
     name: WeightedPoolNoAMFactory
     network: goerli
     source:
-      address: '0xce6E91e48Db1C42f4A379a79851f210786A9A17a'
+      address: "0xce6E91e48Db1C42f4A379a79851f210786A9A17a"
       abi: WeightedPoolNoAMFactory
-      startBlock: 7328856
+      startBlock: 7342000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -130,9 +130,9 @@ dataSources:
     name: StablePoolFactory
     network: goerli
     source:
-      address: '0x857EBFd3fAb7392b729a072915e6A30CA1843B93'
+      address: "0x857EBFd3fAb7392b729a072915e6A30CA1843B93"
       abi: StablePoolFactory
-      startBlock: 7328856
+      startBlock: 7342000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -157,9 +157,9 @@ dataSources:
     name: LiquidityBootstrappingPoolFactory
     network: goerli
     source:
-      address: '0x709708d913664a85f7462882dB2B6F7f69E1BbC9'
+      address: "0x709708d913664a85f7462882dB2B6F7f69E1BbC9"
       abi: LiquidityBootstrappingPoolFactory
-      startBlock: 7328856
+      startBlock: 7342000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
