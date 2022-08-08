@@ -31,7 +31,7 @@ let network: string = dataSource.network();
 let vaultAddressByNetwork: AddressByNetwork = {
   mainnet: "0xc37c34eA9CA579aDF279A16C547e801ed722F3b5",
   kovan: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
-  goerli: "0x0Cc23b51B3A89728c85a63c819E8283e353FC86c",
+  goerli: "0x1795Dd984eA50ca5Dc251A1fC38191ae76E8Acd6",
   rinkeby: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   polygon: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   arbitrum: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
@@ -42,7 +42,7 @@ let vaultAddressByNetwork: AddressByNetwork = {
 let wethAddressByNetwork: AddressByNetwork = {
   mainnet: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // WBNB
   kovan: "0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1",
-  goerli: "0xBd0be709AbE750641524fDECA1F49544440B7C0d",
+  goerli: "0xeFA07706B07934157c0dA4c6e91ac251bd36095a",
   rinkeby: "0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1",
   polygon: "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
   arbitrum: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
@@ -97,7 +97,7 @@ let usdtAddressByNetwork: AddressByNetwork = {
 let balAddressByNetwork: AddressByNetwork = {
   mainnet: "0x294e665AA26F63EC2d65345e69f99A73677be825", // TODO: Our token
   kovan: "0x41286Bb1D3E870f3F750eB7E1C25d7E48c8A1Ac7",
-  goerli: "0x3aB9D2bBDc2ce0412d7395a6c5F5fe5f27990b44",
+  goerli: "0x875cf904E113470F039c5C5f1B85DD17837AD254",
   rinkeby: "0xc3dbf84Abb494ce5199D5d4D815b10EC29529ff8",
   polygon: "0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3",
   arbitrum: "0x040d1EdC9569d4Bab2D15287Dc5A4F10F56a56B8",

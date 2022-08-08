@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
-repository: https://github.com/0XBriz/aalto-swap.git
+repository: https://github.com/0XBriz/goerli-aqx-graph.git
 schema:
   file: ./schema.graphql
 dataSources:
