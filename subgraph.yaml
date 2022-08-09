@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
-repository: https://github.com/0XBriz/goerli-aqx-graph.git
+repository:  https://github.com/0XBriz/aequinox.git
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: Vault
     network: bsc
     source:
-      address: '0xc37c34eA9CA579aDF279A16C547e801ed722F3b5'
+      address: '0xA05cE8E8a34E10B676711e2CAc8BD656E96F310F'
       abi: Vault
-      startBlock: 19949287
+      startBlock: 20275968
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -49,9 +49,9 @@ dataSources:
     name: WeightedPoolFactory
     network: bsc
     source:
-      address: '0xC07511107Fb851ca95Faf0dc0804F9F287aAd7c9'
+      address: '0x98ea45f6C96915c5E00814ee1670b45c2Ff0e159'
       abi: WeightedPoolFactory
-      startBlock: 19949287
+      startBlock: 20275968
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -78,7 +78,7 @@ dataSources:
     source:
       address: '0x9CaC3b6c3AaF765479CfaB9D0EeE87a6161661D9'
       abi: WeightedPoolFactory
-      startBlock: 19949287
+      startBlock: 20275968
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -103,9 +103,9 @@ dataSources:
     name: WeightedPoolNoAMFactory
     network: bsc
     source:
-      address: '0x39045c1BBB3ba627AE14063f81db59020C6b3467'
+      address: '0x37e6Cd604022a800aD1572Bd6242D8A67f4dE038'
       abi: WeightedPoolNoAMFactory
-      startBlock: 19949287
+      startBlock: 20275968
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -130,9 +130,9 @@ dataSources:
     name: StablePoolFactory
     network: bsc
     source:
-      address: '0xF6eF1C72508FEEC5E4AB53d6C1a84E509ba3E043'
+      address: '0x2D331031BB48518DDE8b0128D89E56f109a871Cf'
       abi: StablePoolFactory
-      startBlock: 19949287
+      startBlock: 20275968
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -157,9 +157,9 @@ dataSources:
     name: LiquidityBootstrappingPoolFactory
     network: bsc
     source:
-      address: '0x324A7a95F08C0107E5934d1bc22e0B7b3aEC9093'
+      address: '0x2B669c329adCb15B3c37cF3D2c5B63fCe6F6061d'
       abi: LiquidityBootstrappingPoolFactory
-      startBlock: 19949287
+      startBlock: 20275968
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5

@@ -29,14 +29,14 @@ export class AddressByNetwork {
 let network: string = dataSource.network();
 
 let vaultAddressByNetwork: AddressByNetwork = {
-  mainnet: "0xc37c34eA9CA579aDF279A16C547e801ed722F3b5",
+  mainnet: "0xA05cE8E8a34E10B676711e2CAc8BD656E96F310F",
   kovan: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   goerli: "0x1795Dd984eA50ca5Dc251A1fC38191ae76E8Acd6",
   rinkeby: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   polygon: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   arbitrum: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   dev: "0xa0B05b20e511B1612E908dFCeE0E407E22B76028",
-  bsc: "0xc37c34eA9CA579aDF279A16C547e801ed722F3b5",
+  bsc: "0xA05cE8E8a34E10B676711e2CAc8BD656E96F310F",
 };
 
 let wethAddressByNetwork: AddressByNetwork = {
@@ -95,14 +95,14 @@ let usdtAddressByNetwork: AddressByNetwork = {
 };
 
 let balAddressByNetwork: AddressByNetwork = {
-  mainnet: "0x294e665AA26F63EC2d65345e69f99A73677be825", // TODO: Our token
+  mainnet: "0x0dDef12012eD645f12AEb1B845Cb5ad61C7423F5",
   kovan: "0x41286Bb1D3E870f3F750eB7E1C25d7E48c8A1Ac7",
   goerli: "0x875cf904E113470F039c5C5f1B85DD17837AD254",
   rinkeby: "0xc3dbf84Abb494ce5199D5d4D815b10EC29529ff8",
   polygon: "0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3",
   arbitrum: "0x040d1EdC9569d4Bab2D15287Dc5A4F10F56a56B8",
   dev: "0xf702269193081364E355f862f2CFbFCdC5DB738C",
-  bsc: "0x294e665AA26F63EC2d65345e69f99A73677be825",
+  bsc: "0x0dDef12012eD645f12AEb1B845Cb5ad61C7423F5",
 };
 
 let daiAddressByNetwork: AddressByNetwork = {

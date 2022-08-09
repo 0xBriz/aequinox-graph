@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
-repository: https://github.com/0XBriz/aequinox.git
+repository:  https://github.com/0XBriz/aequinox.git
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,7 +8,7 @@ dataSources:
     name: Vault
     network: goerli
     source:
-      address: "0x1795Dd984eA50ca5Dc251A1fC38191ae76E8Acd6"
+      address: '0x1795Dd984eA50ca5Dc251A1fC38191ae76E8Acd6'
       abi: Vault
       startBlock: 7369081
     mapping:
@@ -49,7 +49,7 @@ dataSources:
     name: WeightedPoolFactory
     network: goerli
     source:
-      address: "0x19187D93eE0b65F2B1Bb24fcFa56Fc14C63e9c1b"
+      address: '0x19187D93eE0b65F2B1Bb24fcFa56Fc14C63e9c1b'
       abi: WeightedPoolFactory
       startBlock: 7369081
     mapping:
@@ -76,7 +76,7 @@ dataSources:
     name: WeightedPool2TokenFactory
     network: goerli
     source:
-      address: "0x37137Df03c5b9D05665Bfdf45c23d961ee70706C"
+      address: '0x37137Df03c5b9D05665Bfdf45c23d961ee70706C'
       abi: WeightedPoolFactory
       startBlock: 7369081
     mapping:
@@ -103,7 +103,7 @@ dataSources:
     name: WeightedPoolNoAMFactory
     network: goerli
     source:
-      address: "0x6274D2e48A2a825E99Dd1A817BE812Bb7Eec4992"
+      address: '0x6274D2e48A2a825E99Dd1A817BE812Bb7Eec4992'
       abi: WeightedPoolNoAMFactory
       startBlock: 7369081
     mapping:
@@ -130,7 +130,7 @@ dataSources:
     name: StablePoolFactory
     network: goerli
     source:
-      address: "0x9570018E227f6c0A8bDAbF4025F9D595f0C6Ad15"
+      address: '0x9570018E227f6c0A8bDAbF4025F9D595f0C6Ad15'
       abi: StablePoolFactory
       startBlock: 7369081
     mapping:
@@ -157,7 +157,7 @@ dataSources:
     name: LiquidityBootstrappingPoolFactory
     network: goerli
     source:
-      address: "0xA8Ad983e0E909B486E7895ca555A877cd21E0b25"
+      address: '0xA8Ad983e0E909B486E7895ca555A877cd21E0b25'
       abi: LiquidityBootstrappingPoolFactory
       startBlock: 7369081
     mapping:
