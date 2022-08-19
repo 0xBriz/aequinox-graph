@@ -6,7 +6,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Vault
-    network: mainnet
+    network: bsc
     source:
       address: '0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7'
       abi: Vault
@@ -47,7 +47,7 @@ dataSources:
           handler: handleInternalBalanceChange
   - kind: ethereum/contract
     name: WeightedPoolFactory
-    network: mainnet
+    network: bsc
     source:
       address: '0xAB9Fc4857c46489B316CA919Bf4a78d4556A3523'
       abi: WeightedPoolFactory
@@ -74,7 +74,7 @@ dataSources:
           handler: handleNewWeightedPool
   - kind: ethereum/contract
     name: WeightedPool2TokenFactory
-    network: mainnet
+    network: bsc
     source:
       address: '0x7e29FE79CBbE9eAcA251BcDdD57c97377A97E8C6'
       abi: WeightedPoolFactory
@@ -101,7 +101,7 @@ dataSources:
           handler: handleNewWeightedPool
   - kind: ethereum/contract
     name: WeightedPoolNoAMFactory
-    network: mainnet
+    network: bsc
     source:
       address: '0x7aFB1Fff22D2EAbC5d256187472bF1989CDE2f97'
       abi: WeightedPoolNoAMFactory
@@ -128,7 +128,7 @@ dataSources:
           handler: handleNewWeightedPool
   - kind: ethereum/contract
     name: StablePoolFactory
-    network: mainnet
+    network: bsc
     source:
       address: '0xe2983b13b8f6631523a6177Cc7D926f49cEf3490'
       abi: StablePoolFactory
@@ -155,7 +155,7 @@ dataSources:
           handler: handleNewStablePool
   - kind: ethereum/contract
     name: LiquidityBootstrappingPoolFactory
-    network: mainnet
+    network: bsc
     source:
       address: '0xfb3057D522Fa106cDEf6D7879A3941e369Bb70b9'
       abi: LiquidityBootstrappingPoolFactory
@@ -185,7 +185,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: WeightedPool
-    network: mainnet
+    network: bsc
     source:
       abi: WeightedPool
     mapping:
@@ -210,7 +210,7 @@ templates:
           handler: handleSwapFeePercentageChange
   - kind: ethereum/contract
     name: StablePool
-    network: mainnet
+    network: bsc
     source:
       abi: StablePool
     mapping:
@@ -241,7 +241,7 @@ templates:
           handler: handleAmpUpdateStopped
   - kind: ethereum/contract
     name: MetaStablePool
-    network: mainnet
+    network: bsc
     source:
       abi: MetaStablePool
     mapping:
@@ -273,7 +273,7 @@ templates:
           handler: handlePriceRateCacheUpdated
   - kind: ethereum/contract
     name: ConvergentCurvePool
-    network: mainnet
+    network: bsc
     source:
       abi: ConvergentCurvePool
     mapping:
@@ -298,7 +298,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: LiquidityBootstrappingPool
-    network: mainnet
+    network: bsc
     source:
       abi: LiquidityBootstrappingPool
     mapping:
@@ -328,7 +328,7 @@ templates:
           handler: handleGradualWeightUpdateScheduled
   - kind: ethereum/contract
     name: InvestmentPool
-    network: mainnet
+    network: bsc
     source:
       abi: InvestmentPool
     mapping:

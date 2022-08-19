@@ -1,25 +1,5 @@
-bsc:
-  network: bsc
-  Vault:
-    address: "0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7"
-    startBlock: 20457276
-  WeightedPoolFactory:
-    address: "0xAB9Fc4857c46489B316CA919Bf4a78d4556A3523"
-    startBlock: 20457276
-  LiquidityBootstrappingPoolFactory:
-    address: "0xfb3057D522Fa106cDEf6D7879A3941e369Bb70b9"
-    startBlock: 20457276
-  WeightedPool2TokenFactory:
-    address: "0x7e29FE79CBbE9eAcA251BcDdD57c97377A97E8C6"
-    startBlock: 20457276
-  StablePoolFactory:
-    address: "0xe2983b13b8f6631523a6177Cc7D926f49cEf3490"
-    startBlock: 20457276
-  WeightedPoolNoAMFactory:
-    address: "0x7aFB1Fff22D2EAbC5d256187472bF1989CDE2f97"
-    startBlock: 20457276
 mainnet:
-  network: mainnet
+  network: bsc
   Vault:
     address: "0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7"
     startBlock: 20457276
