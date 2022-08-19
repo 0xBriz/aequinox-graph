@@ -29,14 +29,14 @@ export class AddressByNetwork {
 let network: string = dataSource.network();
 
 let vaultAddressByNetwork: AddressByNetwork = {
-  mainnet: "0xA05cE8E8a34E10B676711e2CAc8BD656E96F310F",
+  mainnet: "0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7",
   kovan: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   goerli: "0x1795Dd984eA50ca5Dc251A1fC38191ae76E8Acd6",
   rinkeby: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   polygon: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   arbitrum: "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
   dev: "0xa0B05b20e511B1612E908dFCeE0E407E22B76028",
-  bsc: "0xA05cE8E8a34E10B676711e2CAc8BD656E96F310F",
+  bsc: "0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7",
 };
 
 let wethAddressByNetwork: AddressByNetwork = {
@@ -146,5 +146,5 @@ export let BAL: Address = forNetwork(balAddressByNetwork, network);
 export let DAI: Address = forNetwork(daiAddressByNetwork, network);
 
 // PRICING_ASSETS must be sorted by order of preference
-export let PRICING_ASSETS: Address[] = [WETH, WBTC, USDC, DAI, USDT, BAL];
+export let PRICING_ASSETS: Address[] = [USDC, DAI, USDT, BAL];
 export let USD_STABLE_ASSETS: Address[] = [USDC, DAI, USDT];
