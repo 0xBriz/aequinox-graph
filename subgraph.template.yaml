@@ -1,11 +1,11 @@
 specVersion: 0.0.2
-description: AQX is a non-custodial portfolio manager, liquidity provider, and price sensor.
+description: Aequinox is a non-custodial portfolio manager, liquidity provider, and price sensor.
 {{#if graft}}
 graft:
   base: {{graft.base}}
   block: {{graft.block}}
 {{/if}}
-repository:  https://github.com/0XBriz/aequinox.git
+repository:  https://github.com/0xBriz/aequinox-graph.git
 schema:
   file: ./schema.graphql
 dataSources:
