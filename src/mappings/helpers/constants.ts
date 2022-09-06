@@ -194,5 +194,5 @@ export let DAI: Address = forNetwork(daiAddressByNetwork, network);
 export let AEQ_BPT: Address = forNetwork(balBptAddressByNetwork, network);
 
 // PRICING_ASSETS must be sorted by order of preference
-export let PRICING_ASSETS: Address[] = [BUSD, WETH, WBTC, USDC, USDT, AEQ_BPT, AEQ, AMES, ETH];
+export let PRICING_ASSETS: Address[] = [BUSD, WETH, USDC, USDT, DAI, WBTC, AEQ_BPT, AEQ, AMES, ETH];
 export let USD_STABLE_ASSETS: Address[] = [BUSD, USDC, USDT, DAI];
