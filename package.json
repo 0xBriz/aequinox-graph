@@ -2,7 +2,7 @@
   "name": "aqx-graph",
   "version": "0.1.0",
   "scripts": {
-    "deploy": "graph deploy 0xBriz/aequinox-bsc --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy": "graph deploy 0xbriz/aequinox-bsc --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "create": "graph create 0xBriz/aequinox-bsc --node https://api.thegraph.com/deploy/",
     "create:local": "graph create 0xBriz/aequinox-bsc  --node http://127.0.0.1:8020",
     "deploy:local": "graph deploy 0xBriz/aequinox-bsc --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
