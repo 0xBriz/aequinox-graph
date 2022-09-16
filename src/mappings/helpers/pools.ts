@@ -1,17 +1,19 @@
-import { Address } from '@graphprotocol/graph-ts';
-import { Pool } from '../../types/schema';
+import { Address, Bytes, log } from "@graphprotocol/graph-ts";
+import { Pool } from "../../types/schema";
+import { Vault } from "../../types/Vault/Vault";
+import { VAULT_ADDRESS } from "./constants";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace PoolType {
-  export const Weighted = 'Weighted';
-  export const Stable = 'Stable';
-  export const MetaStable = 'MetaStable';
-  export const Element = 'Element';
-  export const LiquidityBootstrapping = 'LiquidityBootstrapping';
-  export const Investment = 'Investment';
-  export const StablePhantom = 'StablePhantom';
-  export const AaveLinear = 'AaveLinear';
-  export const ERC4626Linear = 'ERC4626Linear';
+  export const Weighted = "Weighted";
+  export const Stable = "Stable";
+  export const MetaStable = "MetaStable";
+  export const Element = "Element";
+  export const LiquidityBootstrapping = "LiquidityBootstrapping";
+  export const Investment = "Investment";
+  export const StablePhantom = "StablePhantom";
+  export const AaveLinear = "AaveLinear";
+  export const ERC4626Linear = "ERC4626Linear";
 }
 
 export function isVariableWeightPool(pool: Pool): boolean {
@@ -26,9 +28,26 @@ export function hasVirtualSupply(pool: Pool): boolean {
   );
 }
 
+export function getPoolTokens(poolId: Bytes): Bytes[] | null {
+  let vaultContract = Vault.bind(VAULT_ADDRESS);
+  let tokensCall = vaultContract.try_getPoolTokens(poolId);
+
+  if (tokensCall.reverted) {
+    log.warning("Failed to get pool tokens: {}", [poolId.toHexString()]);
+    return null;
+  }
+
+  let tokensValue = tokensCall.value.value0;
+  let tokens = changetype<Bytes[]>(tokensValue);
+
+  return tokens;
+}
+
 export function isStableLikePool(pool: Pool): boolean {
   return (
-    pool.poolType == PoolType.Stable || pool.poolType == PoolType.MetaStable || pool.poolType == PoolType.StablePhantom
+    pool.poolType == PoolType.Stable ||
+    pool.poolType == PoolType.MetaStable ||
+    pool.poolType == PoolType.StablePhantom
   );
 }
 
