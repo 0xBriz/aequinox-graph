@@ -186,9 +186,9 @@ dataSources:
     name: ERC4626LinearPoolFactory
     network: bsc
     source:
-      address: '0xAC3BD1BED54c7DeE8F47424002656849639164B9'
+      address: '0x202fE8BA86cA85872577fab79Ba78aD192E79C02'
       abi: ERC4626LinearPoolFactory
-      startBlock: 21260000
+      startBlock: 21475485
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -387,3 +387,33 @@ templates:
           handler: handleGradualWeightUpdateScheduled
         - event: ManagementFeePercentageChanged(uint256)
           handler: handleManagementFeePercentageChanged
+  - kind: ethereum/contract
+    name: LinearPool
+    network: bsc
+    source:
+      abi: LinearPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/mappings/poolController.ts
+      entities:
+        - Pool
+        - PoolShare
+        - Swap
+        - PoolToken
+        - GradualWeightUpdate
+      abis:
+        - name: WeightedPool
+          file: ./abis/WeightedPool.json
+        - name: MetaStablePool
+          file: ./abis/MetaStablePool.json
+        - name: LinearPool
+          file: ./abis/LinearPool.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: SwapFeePercentageChanged(uint256)
+          handler: handleSwapFeePercentageChange
+        - event: TargetsSet(indexed address,uint256,uint256)
+          handler: handleTargetsSet

@@ -19,8 +19,8 @@ mainnet:
     address: "0x7aFB1Fff22D2EAbC5d256187472bF1989CDE2f97"
     startBlock: 20457276
   ERC4626LinearPoolFactory:
-    address: "0xAC3BD1BED54c7DeE8F47424002656849639164B9"
-    startBlock: 21260000
+    address: "0x202fE8BA86cA85872577fab79Ba78aD192E79C02"
+    startBlock: 21475485
 goerli:
   network: goerli
   Vault:
