@@ -117,9 +117,14 @@ function handlePoolJoined(event: PoolBalanceChanged): void {
   for (let i: i32 = 0; i < tokenAddresses.length; i++) {
     let tokenAddress: Address = Address.fromString(tokenAddresses[i].toHexString());
     let poolToken = loadPoolToken(poolId, tokenAddress);
+    // if (poolToken == null) {
+    //   throw new Error("poolToken not found");
+    // }
     if (poolToken == null) {
-      throw new Error("poolToken not found");
+      log.warning("Pool token not found: {} {}", [poolId, transactionHash.toHexString()]);
+      return;
     }
+
     let joinAmount = scaleDown(amounts[i], poolToken.decimals);
     joinAmounts[i] = joinAmount;
   }
@@ -136,8 +141,12 @@ function handlePoolJoined(event: PoolBalanceChanged): void {
     let poolToken = loadPoolToken(poolId, tokenAddress);
 
     // adding initial liquidity
+    // if (poolToken == null) {
+    //   throw new Error("poolToken not found");
+    // }
     if (poolToken == null) {
-      throw new Error("poolToken not found");
+      log.warning("Pool token not found: {} {}", [poolId, transactionHash.toHexString()]);
+      return;
     }
 
     let amountIn = amounts[i].minus(protocolFeeAmounts[i]);
