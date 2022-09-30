@@ -52,7 +52,6 @@ function createWeightedLikePool(event: PoolCreated, poolType: string): string {
 
   let vaultContract = Vault.bind(VAULT_ADDRESS);
   let tokensCall = vaultContract.try_getPoolTokens(poolId);
-
   if (!tokensCall.reverted) {
     let tokens = tokensCall.value.value0;
     pool.tokensList = changetype<Bytes[]>(tokens);
@@ -61,6 +60,7 @@ function createWeightedLikePool(event: PoolCreated, poolType: string): string {
       createPoolTokenEntity(poolId.toHexString(), tokens[i]);
     }
   }
+
   pool.save();
 
   // Load pool with initial weights
@@ -107,24 +107,24 @@ function createStableLikePool(event: PoolCreated, poolType: string): string | nu
   pool.factory = event.address;
   pool.owner = owner;
 
-  // let vaultContract = Vault.bind(VAULT_ADDRESS);
-  // let tokensCall = vaultContract.try_getPoolTokens(poolId);
-  // if (!tokensCall.reverted) {
-  //   let tokens = tokensCall.value.value0;
-  //   pool.tokensList = changetype<Bytes[]>(tokens);
+  let vaultContract = Vault.bind(VAULT_ADDRESS);
+  let tokensCall = vaultContract.try_getPoolTokens(poolId);
+  if (!tokensCall.reverted) {
+    let tokens = tokensCall.value.value0;
+    pool.tokensList = changetype<Bytes[]>(tokens);
 
-  //   for (let i: i32 = 0; i < tokens.length; i++) {
-  //     createPoolTokenEntity(poolId.toHexString(), tokens[i]);
-  //   }
-  // }
+    for (let i: i32 = 0; i < tokens.length; i++) {
+      createPoolTokenEntity(poolId.toHexString(), tokens[i]);
+    }
+  }
 
-  let tokens = getPoolTokens(poolId);
-  if (tokens == null) return null;
-  pool.tokensList = tokens;
+  // let tokens = getPoolTokens(poolId);
+  // if (tokens == null) return null;
+  // pool.tokensList = tokens;
 
   pool.save();
 
-  handleNewPoolTokens(poolId, tokens);
+  // handleNewPoolTokens(poolId, tokens);
 
   return poolId.toHexString();
 }
@@ -230,15 +230,27 @@ function handleNewLinearPool(event: PoolCreated, poolType: string): void {
   pool.lowerTarget = tokenToDecimal(targetsCall.value.value0, 18);
   pool.upperTarget = tokenToDecimal(targetsCall.value.value1, 18);
 
-  let tokens = getPoolTokens(poolId);
-  if (tokens == null) return;
-  pool.tokensList = tokens;
+  // let tokens = getPoolTokens(poolId);
+  // if (tokens == null) return;
+  // pool.tokensList = tokens;
+
+  let vaultContract = Vault.bind(VAULT_ADDRESS);
+  let tokensCall = vaultContract.try_getPoolTokens(poolId);
+  if (!tokensCall.reverted) {
+    let tokens = tokensCall.value.value0;
+    pool.tokensList = changetype<Bytes[]>(tokens);
+
+    for (let i: i32 = 0; i < tokens.length; i++) {
+      createPoolTokenEntity(poolId.toHexString(), tokens[i]);
+    }
+  }
 
   let maxTokenBalance = BigDecimal.fromString("5192296858534827.628530496329220095");
   pool.totalShares = pool.totalShares.minus(maxTokenBalance);
+
   pool.save();
 
-  handleNewPoolTokens(poolId, tokens);
+  // handleNewPoolTokens(poolId, tokens);
 
   LinearPoolTemplate.create(poolAddress);
 }
@@ -293,12 +305,4 @@ function handleNewPool(event: PoolCreated, poolId: Bytes, swapFee: BigInt): Pool
   }
 
   return pool;
-}
-
-function handleNewPoolTokens(poolId: Bytes, tokens: Bytes[]): void {
-  let tokensAddresses = changetype<Address[]>(tokens);
-
-  for (let i: i32 = 0; i < tokens.length; i++) {
-    createPoolTokenEntity(poolId.toHexString(), tokensAddresses[i]);
-  }
 }
