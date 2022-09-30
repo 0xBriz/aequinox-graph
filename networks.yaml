@@ -21,6 +21,9 @@ mainnet:
   ERC4626LinearPoolFactory:
     address: "0x202fE8BA86cA85872577fab79Ba78aD192E79C02"
     startBlock: 21475485
+  MetaStablePoolFactory:
+    address: "0x01BCa9D1355132Bb06e74bFb248390bd42cF0B2B"
+    startBlock: 21784608
 goerli:
   network: goerli
   Vault:
@@ -41,3 +44,6 @@ goerli:
   WeightedPoolFactory:
     address: "0x19187D93eE0b65F2B1Bb24fcFa56Fc14C63e9c1b"
     startBlock: 7369081
+  MetaStablePoolFactory:
+    address: "0x2C82E59bE03936868d778e4142C1C6D013343592"
+    startBlock: 7687099

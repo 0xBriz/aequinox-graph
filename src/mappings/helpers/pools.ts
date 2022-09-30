@@ -54,3 +54,22 @@ export function isStableLikePool(pool: Pool): boolean {
 export function getPoolAddress(poolId: string): Address {
   return changetype<Address>(Address.fromHexString(poolId.slice(0, 42)));
 }
+
+export function getPoolTokenManager(poolId: Bytes, tokenAddress: Bytes): Address | null {
+  let token = changetype<Address>(tokenAddress);
+
+  let vaultContract = Vault.bind(VAULT_ADDRESS);
+  let managersCall = vaultContract.try_getPoolTokenInfo(poolId, token);
+
+  if (managersCall.reverted) {
+    log.warning("Failed to get pool token info: {} {}", [
+      poolId.toHexString(),
+      token.toHexString(),
+    ]);
+    return null;
+  }
+
+  let assetManager = managersCall.value.value3;
+
+  return assetManager;
+}
