@@ -24,6 +24,9 @@ mainnet:
   MetaStablePoolFactory:
     address: "0x01BCa9D1355132Bb06e74bFb248390bd42cF0B2B"
     startBlock: 21784608
+  StablePhantomPoolFactory:
+    address: "0xd3b0FEc464290268e43684eeB05013Ea01aF64BC"
+    startBlock: 22343294
 goerli:
   network: goerli
   Vault:

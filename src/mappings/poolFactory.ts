@@ -1,5 +1,5 @@
 import { ZERO_BD, VAULT_ADDRESS, ZERO } from "./helpers/constants";
-import { getPoolTokenManager, getPoolTokens, PoolType } from "./helpers/pools";
+import { PoolType } from "./helpers/pools";
 
 import {
   newPoolEntity,
@@ -19,7 +19,7 @@ import { WeightedPool2Tokens as WeightedPool2TokensTemplate } from "../types/tem
 import { WeightedPool as WeightedPoolTemplate } from "../types/templates";
 import { StablePool as StablePoolTemplate } from "../types/templates";
 import { MetaStablePool as MetaStablePoolTemplate } from "../types/templates";
-//import { StablePhantomPool as StablePhantomPoolTemplate } from '../types/templates';
+import { StablePhantomPool as StablePhantomPoolTemplate } from "../types/templates";
 import { ConvergentCurvePool as CCPoolTemplate } from "../types/templates";
 import { LiquidityBootstrappingPool as LiquidityBootstrappingPoolTemplate } from "../types/templates";
 import { InvestmentPool as InvestmentPoolTemplate } from "../types/templates";
@@ -141,10 +141,10 @@ export function handleNewMetaStablePool(event: PoolCreated): void {
   MetaStablePoolTemplate.create(event.params.pool);
 }
 
-// export function handleNewStablePhantomPool(event: PoolCreated): void {
-//   createStableLikePool(event, PoolType.StablePhantom);
-//   StablePhantomPoolTemplate.create(event.params.pool);
-// }
+export function handleNewStablePhantomPool(event: PoolCreated): void {
+  createStableLikePool(event, PoolType.StablePhantom);
+  StablePhantomPoolTemplate.create(event.params.pool);
+}
 
 export function handleNewCCPPool(event: PoolCreated): void {
   let poolAddress: Address = event.params.pool;
